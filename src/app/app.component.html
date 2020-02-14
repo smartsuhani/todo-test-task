@@ -3,4 +3,23 @@
   <div class="row text-center mt-4">
     <h1 class="mx-auto font-weight-bolder text-secondary">TODO</h1>
   </div>
+  <!-- input box to add todo -->
+  <div class="row mt-4">
+    <form class="mx-auto">
+      <div class="form-group">
+        <input type="text" class="form-control" id="todoInputBox" placeholder="Enter todo">
+      </div>
+    </form>
+  </div>
+
+  <!-- To do List -->
+  <div class="row mt-4" *ngIf="todoArr && todoArr.length">
+    <ul class="list-group mx-auto">
+      <ng-container *ngFor="let todo of todoArr">
+        <li class="list-group-item">
+          {{ todo.title }}
+        </li>
+      </ng-container>
+    </ul>
+  </div>
 </div>
