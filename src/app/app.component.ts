@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'todo';
 
   todoArr: ITodoModel[];
+  todoInputVal: string;
 
   constructor(private service: TodoCrudService) {
 
@@ -21,5 +22,21 @@ export class AppComponent implements OnInit {
       .then((response) => {
         this.todoArr = response;
       });
+  }
+
+  onDelete(todo: ITodoModel) {
+
+  }
+
+  onComplete(todo: ITodoModel) {
+
+  }
+
+  onSubmit() {
+    if (this.todoInputVal.trim()) {
+      console.log('New to do ', this.todoInputVal);
+      const todo = { title: this.todoInputVal, status: 'active', isDeleted: false };
+      this.service.create(todo);
+    }
   }
 }

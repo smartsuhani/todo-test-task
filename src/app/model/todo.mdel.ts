@@ -1,5 +1,5 @@
 export interface ITodoModel {
-  id: string;
+  id?: string; // optional
   title: string;
   status: string;
   isDeleted: boolean;
