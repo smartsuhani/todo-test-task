@@ -22,18 +22,20 @@
 
     <ul class="list-group mx-auto">
       <ng-container *ngFor="let todo of todoArr">
-        <li class="list-group-item p-1">
+        <li class="border-0 list-group-item p-1">
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ todo.title }}</h5>
+            <div class = "p-2 card-body d-flex justify-content-between">
+              <h5 class = "mb-0 card-title">{{ todo.title }}</h5>
               <!--<h6 class="card-subtitle mb-2 text-muted">{{ 'Todo Description' }}</h6>
               <p class="card-text">{{ 'Todo text' }}</p>-->
-              <a class="card-link" (click)="onComplete(todo)">
-                <img height="20" width="20" src="assets/img/completed.svg" />
-              </a>
-              <a class="card-link" (click)="onDelete(todo)">
-                <img height="17" width="17" src="assets/img/delete.svg" />
-              </a>
+              <div class="w-25 d-flex justify-content-end">
+                <a class = "card-link" (click) = "onComplete(todo)">
+                  <img height = "20" width = "20" src = "assets/img/completed.svg"/>
+                </a>
+                <a class = "card-link" (click) = "onDelete(todo)">
+                  <img height = "17" width = "17" src = "assets/img/delete.svg"/>
+                </a>
+              </div>
             </div>
           </div>
         </li>
