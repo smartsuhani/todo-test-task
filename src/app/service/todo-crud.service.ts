@@ -36,4 +36,19 @@ export class TodoCrudService {
         });
     });
   }
+
+  complete(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpClient.patch(url, { completed: true })
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          console.error('Error occurred : ', error);
+          alert('Some Error Occurred');
+          reject();
+        });
+    });
+  }
 }

@@ -3,5 +3,5 @@ export interface ITodoModel {
   completed: boolean;
   order?: number; // optional
   url?: string; // optional
-  isDelete: boolean;
+  isDelete?: boolean;
 }

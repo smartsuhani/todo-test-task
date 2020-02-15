@@ -33,7 +33,14 @@ export class AppComponent implements OnInit {
   }
 
   onComplete(todo: ITodoModel) {
-
+    this.service.complete(todo.url)
+      .then(r => {
+        // tslint:disable-next-line:variable-name
+        this.todoArrBkup.forEach((_todo) => {
+          // tslint:disable-next-line:no-unused-expression
+          _todo.url === todo.url ? todo.completed = !todo.completed : '';
+        });
+      });
   }
 
   onSubmit() {
