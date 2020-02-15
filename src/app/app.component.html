@@ -40,6 +40,26 @@
           </div>
         </li>
       </ng-container>
+      <li class="border-0 list-group-item p-1">
+        <div class="card">
+          <div class = "p-2 card-body d-flex justify-content-between">
+            <!-- Total Item -->
+            <div class="align-items-center">
+              <p class="mb-0">{{ todoArr.length + 1 }} Items left</p>
+            </div>
+
+            <div>
+              <button class="btn btn-dark">All</button>
+              <button class="btn btn-dark mx-2">Active</button>
+              <button class="btn btn-dark">Completed</button>
+            </div>
+
+            <div>
+              <button class="btn btn-danger">Clear Completed</button>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 </div>
