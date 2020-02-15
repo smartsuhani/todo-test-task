@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
   // -- this holds todos selected by user like active, completed
   todoArr: ITodoModel[];
   todoInputVal: string;
+  possibleStates = { all: 'all', active: 'active', completed: 'completed' };
+  activeState = this.possibleStates.all;
 
   constructor(private service: TodoCrudService) {
 
@@ -35,11 +37,14 @@ export class AppComponent implements OnInit {
   onComplete(todo: ITodoModel) {
     this.service.complete(todo.url)
       .then(r => {
+        // -- update in local copy
         // tslint:disable-next-line:variable-name
         this.todoArrBkup.forEach((_todo) => {
           // tslint:disable-next-line:no-unused-expression
           _todo.url === todo.url ? todo.completed = !todo.completed : '';
         });
+        // -- reload the state
+        this.reloadActiveState();
       });
   }
 
@@ -49,6 +54,7 @@ export class AppComponent implements OnInit {
         .then((response) => {
           this.todoArrBkup.push(response);
           this.todoArr = this.todoArrBkup;
+          this.todoInputVal = null; // empty text box once submitted successfully
         });
     }
   }
@@ -59,10 +65,14 @@ export class AppComponent implements OnInit {
 
   onActiveClick() {
     this.todoArr = this.filterTodo(false);
+    // -- update active state
+    this.activeState = this.possibleStates.active;
   }
 
   onCompletedClick() {
     this.todoArr = this.filterTodo(true);
+    // -- update active state
+    this.activeState = this.possibleStates.completed;
   }
 
   private filterTodo(completedFlag: boolean): ITodoModel[] {
@@ -72,5 +82,15 @@ export class AppComponent implements OnInit {
     return this.todoArrBkup.filter((todo: ITodoModel) => {
       return todo.completed === completedFlag;
     });
+  }
+
+  reloadActiveState() {
+    if (this.activeState === this.possibleStates.all) {
+      this.todoArr = this.todoArrBkup;
+    } else if (this.activeState === this.possibleStates.active) {
+      this.todoArr = this.filterTodo(false);
+    } else if (this.activeState === this.possibleStates.completed) {
+      this.todoArr = this.filterTodo(true);
+    }
   }
 }
