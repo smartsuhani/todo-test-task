@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoCrudService } from './service/todo-crud.service';
-import { ITodoModel } from './model/todo.mdel';
+import { ITodoModel } from './model/todo.model';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   onSubmit() {
     if (this.todoInputVal.trim()) {
       console.log('New to do ', this.todoInputVal);
-      const todo = { title: this.todoInputVal, status: 'active', isDeleted: false };
+      const todo = { title: this.todoInputVal, completed: false, isDelete: false };
       this.service.create(todo);
     }
   }
