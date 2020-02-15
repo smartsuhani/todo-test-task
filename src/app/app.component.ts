@@ -63,7 +63,8 @@ export class AppComponent implements OnInit {
         .then((response) => {
           this.todoArrBkup.push(response);
           this.todoArr = this.todoArrBkup;
-          this.todoInputVal = null; // empty text box once submitted successfully
+          // -- empty text box once submitted successfully
+          this.todoInputVal = null;
         });
     }
   }
@@ -103,5 +104,15 @@ export class AppComponent implements OnInit {
     } else if (this.activeState === this.possibleStates.completed) {
       this.todoArr = this.filterTodo(true);
     }
+  }
+
+  onClearCompleted() {
+    this.service.deleteCompleted()
+      .then((response) => {
+        this.todoArrBkup = response;
+        this.todoArr = this.todoArrBkup;
+        // -- update active state
+        this.activeState = this.possibleStates.all;
+      });
   }
 }

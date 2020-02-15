@@ -60,4 +60,18 @@ export class TodoCrudService {
         });
     });
   }
+
+  deleteCompleted(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const apiUrl = `${ environment.todo }/completed`;
+      this.httpClient.delete(apiUrl)
+        .toPromise()
+        .then((response) => { resolve(response); })
+        .catch((error) => {
+          console.error('Error occurred : ', error);
+          alert('Some Error Occurred');
+          reject();
+        });
+    });
+  }
 }
