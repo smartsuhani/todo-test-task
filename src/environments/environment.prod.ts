@@ -1,3 +1,7 @@
+const baseApi = `http://localhost:5000`;
+const todoRoute = `todo`;
+
 export const environment = {
-  production: true
+  production: true,
+  todo: `${ baseApi }/${ todoRoute }`,
 };

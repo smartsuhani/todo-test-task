@@ -2,8 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const baseApi = `http://localhost:5000`;
+const todoRoute = `todo`;
+
 export const environment = {
-  production: false
+  production: false,
+  todo: `${ baseApi }/${ todoRoute }`,
 };
 
 /*

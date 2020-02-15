@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAll()
       .then((response) => {
-        this.todoArr = response;
         this.todoArrBkup = response;
+        this.todoArr = this.todoArrBkup;
       });
   }
 
@@ -38,8 +38,11 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     if (this.todoInputVal.trim()) {
-      const todo = { title: this.todoInputVal, completed: false, isDelete: false };
-      this.service.create(todo);
+      this.service.create({ title: this.todoInputVal })
+        .then((response) => {
+          this.todoArrBkup.push(response);
+          this.todoArr = this.todoArrBkup;
+        });
     }
   }
 
@@ -59,9 +62,8 @@ export class AppComponent implements OnInit {
     if (!(this.todoArrBkup && this.todoArrBkup.length)) {
       return [];
     }
-    const todos = this.todoArrBkup.filter((todo: ITodoModel) => {
-        return todo.completed === completedFlag;
-      });
-    return todos;
+    return this.todoArrBkup.filter((todo: ITodoModel) => {
+      return todo.completed === completedFlag;
+    });
   }
 }

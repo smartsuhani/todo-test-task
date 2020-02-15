@@ -1,11 +1,11 @@
 <div class="container">
   <!-- page title -->
-  <div class="row text-center mt-4">
-    <h1 class="mx-auto font-weight-bolder text-secondary">TODO</h1>
+  <div class="row">
+    <h1 class="text-center mt-4 w-100 font-weight-bolder text-secondary">TODO</h1>
   </div>
   <!-- input box to add todo -->
-  <div class="row mt-4">
-    <form (submit)="onSubmit()" class="mx-auto">
+  <div class="row">
+    <form (submit)="onSubmit()" class="mx-auto mt-3">
       <div class="form-group">
         <input type="text"
                required
@@ -18,48 +18,50 @@
   </div>
 
   <!-- To do List -->
-  <div class="row mt-4" *ngIf="todoArr && todoArr.length">
-
-    <ul class="list-group mx-auto">
-      <ng-container *ngFor="let todo of todoArr">
-        <li class="border-0 list-group-item p-1">
-          <div class="card">
-            <div class = "p-2 card-body d-flex justify-content-between">
-              <h5 class = "mb-0 card-title">{{ todo.title }}</h5>
-              <!--<h6 class="card-subtitle mb-2 text-muted">{{ 'Todo Description' }}</h6>
-              <p class="card-text">{{ 'Todo text' }}</p>-->
-              <div class="w-25 d-flex justify-content-end">
-                <a class = "card-link" (click) = "onComplete(todo)">
-                  <img height = "20" width = "20" src = "assets/img/completed.svg"/>
-                </a>
-                <a class = "card-link" (click) = "onDelete(todo)">
-                  <img height = "17" width = "17" src = "assets/img/delete.svg"/>
-                </a>
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="list-group mx-auto mt-3" *ngIf="todoArr && todoArr.length">
+        <ng-container *ngFor="let todo of todoArr">
+          <li class="border-0 list-group-item p-1">
+            <div class="card">
+              <div class = "p-2 card-body d-flex justify-content-between">
+                <h5 class = "mb-0 card-title">{{ todo.title }}</h5>
+                <!--<h6 class="card-subtitle mb-2 text-muted">{{ 'Todo Description' }}</h6>
+                <p class="card-text">{{ 'Todo text' }}</p>-->
+                <div class="w-25 d-flex justify-content-end">
+                  <a class = "card-link" (click) = "onComplete(todo)">
+                    <img height = "20" width = "20" src = "assets/img/completed.svg"/>
+                  </a>
+                  <a class = "card-link" (click) = "onDelete(todo)">
+                    <img height = "17" width = "17" src = "assets/img/delete.svg"/>
+                  </a>
+                </div>
               </div>
             </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-lg-6 m-auto">
+      <div class="card min-width-550 mt-3" *ngIf="todoArrBkup && todoArrBkup.length">
+        <div class = "p-2 card-body d-flex justify-content-between">
+          <!-- Total Item -->
+          <div class="align-items-center">
+            <p class="mb-0">{{ todoArr.length }} Items left</p>
           </div>
-        </li>
-      </ng-container>
-      <li class="border-0 list-group-item p-1">
-        <div class="card">
-          <div class = "p-2 card-body d-flex justify-content-between">
-            <!-- Total Item -->
-            <div class="align-items-center">
-              <p class="mb-0">{{ todoArr.length }} Items left</p>
-            </div>
 
-            <div>
-              <button class="btn btn-dark" (click)="onAllClick()">All</button>
-              <button class="btn btn-dark mx-2" (click)="onActiveClick()">Active</button>
-              <button class="btn btn-dark" (click)="onCompletedClick()">Completed</button>
-            </div>
+          <div>
+            <button class="btn btn-dark" (click)="onAllClick()">All</button>
+            <button class="btn btn-dark mx-2" (click)="onActiveClick()">Active</button>
+            <button class="btn btn-dark" (click)="onCompletedClick()">Completed</button>
+          </div>
 
-            <div>
-              <button class="btn btn-danger">Clear Completed</button>
-            </div>
+          <div>
+            <button class="btn btn-danger">Clear Completed</button>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
+
 </div>

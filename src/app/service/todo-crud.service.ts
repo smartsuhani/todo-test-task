@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ITodoModel } from '../model/todo.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class TodoCrudService {
 
   getAll(): Promise<any> {
     return new Promise((resolve, reject) => {
-      const apiUrl = `assets/data/list-todo.json`;
+      const apiUrl = `${ environment.todo }`;
       this.httpClient.get(apiUrl).toPromise()
         .then((response) => { resolve(response); })
         .catch((error) => {
@@ -22,11 +22,13 @@ export class TodoCrudService {
     });
   }
 
-  create(todo: ITodoModel): Promise<any> {
+  create(todo: {title: string}): Promise<any> {
     return new Promise((resolve, reject) => {
-      const apiUrl = ``;
+      const apiUrl = `${ environment.todo }`;
       this.httpClient.post(apiUrl, todo).toPromise()
-        .then((response) => { resolve(response); })
+        .then((response) => {
+          resolve(response);
+        })
         .catch((error) => {
           console.error('Error occurred : ', error);
           alert('Some Error Occurred');
