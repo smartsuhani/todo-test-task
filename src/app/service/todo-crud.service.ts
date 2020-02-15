@@ -26,9 +26,7 @@ export class TodoCrudService {
     return new Promise((resolve, reject) => {
       const apiUrl = `${ environment.todo }`;
       this.httpClient.post(apiUrl, todo).toPromise()
-        .then((response) => {
-          resolve(response);
-        })
+        .then((response) => { resolve(response); })
         .catch((error) => {
           console.error('Error occurred : ', error);
           alert('Some Error Occurred');
@@ -41,9 +39,20 @@ export class TodoCrudService {
     return new Promise((resolve, reject) => {
       this.httpClient.patch(url, { completed: true })
         .toPromise()
-        .then((response) => {
-          resolve(response);
-        })
+        .then((response) => { resolve(response); })
+        .catch((error) => {
+          console.error('Error occurred : ', error);
+          alert('Some Error Occurred');
+          reject();
+        });
+    });
+  }
+
+  delete(url: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(url)
+        .toPromise()
+        .then((response) => { resolve(response); })
         .catch((error) => {
           console.error('Error occurred : ', error);
           alert('Some Error Occurred');

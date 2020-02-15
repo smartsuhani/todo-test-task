@@ -31,7 +31,16 @@ export class AppComponent implements OnInit {
   }
 
   onDelete(todo: ITodoModel) {
-
+    this.service.delete(todo.url)
+      .then((response) => {
+        // tslint:disable-next-line:variable-name
+        this.todoArrBkup = this.todoArrBkup.filter(_todo => {
+          // tslint:disable-next-line:no-unused-expression
+          return _todo.url !== todo.url;
+        });
+        // -- reload the state
+        this.reloadActiveState();
+      });
   }
 
   onComplete(todo: ITodoModel) {
