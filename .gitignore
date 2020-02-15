@@ -9,8 +9,6 @@
 
 # dependencies
 /node_modules
-# ignore imahes
-/src/assets/img
 
 # profiling files
 chrome-profiler-events.json
