@@ -70,6 +70,8 @@ export class AppComponent implements OnInit {
 
   onAllClick() {
     this.todoArr = this.todoArrBkup;
+    // -- update active state
+    this.activeState = this.possibleStates.all;
   }
 
   onActiveClick() {
